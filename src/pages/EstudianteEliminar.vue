@@ -14,9 +14,6 @@
 <script>
 
 import {
-  consultarPorIdFachada,
-  insertarFachada,
-  actualizarFachada,
   eliminarFachada
 } from "../helpers/clienteEstudiante";
 
@@ -36,58 +33,6 @@ export default {
     };
   },
   methods: {
-    async consultarPorId() {
-      const data = await consultarPorIdFachada(this.id);
-      const { nombre, apellido } = data;
-      console.log(data);
-      this.nombre = data.nombre;
-      this.apellido = data.apellido;
-      this.genero = data.genero;
-      this.fechaNacimiento = data.fechaNacimiento;
-      (this.carrera = data.carrera),
-        (this.cedula = data.cedula),
-        (this.rangoEconomico = data.rangoEconomico),
-        (this.facultad = data.facultad),
-        (this.gratuidad = data.gratuidad);
-    },
-
-    async insertar() {
-      console.log("Insertando....");
-      const datos = {
-        nombre: this.nombre,
-        apellido: this.apellido,
-        genero: this.genero,
-        fechaNacimiento: this.fechaNacimiento,
-        carrera: this.carrera,
-        cedula: this.cedula,
-        rangoEconomico: this.rangoEconomico,
-        facultad: this.facultad,
-        carrera: this.telefono,
-        gratuidad: this.gratuidad,
-      };
-
-      await insertarFachada(datos);
-
-      console.log("Insertado!");
-    },
-
-    async actualiazar() {
-      const body = {
-        nombre: this.nombre,
-        apellido: this.apellido,
-        genero: this.genero,
-        fechaNacimiento: this.fechaNacimiento,
-        carrera: this.carrera,
-        cedula: this.cedula,
-        rangoEconomico: this.rangoEconomico,
-        facultad: this.facultad,
-        carrera: this.telefono,
-        gratuidad: this.gratuidad,
-      };
-
-      await actualizarFachada(this.id, body);
-    },
-
     async eliminar(){
       await eliminarFachada(this.id);
     },

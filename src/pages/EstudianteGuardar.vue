@@ -1,45 +1,47 @@
 <template>
-    <h1>Página Guardar</h1>
+  <h1>Guardar Estudiante</h1>
 
-    <div class="container">
-    <div class="formInsertar">
-      <h1>Inserción de Estudiantes</h1>
-
-      <label for="nombre">Nombre</label>
-      <input id="nombre" v-model="nombre" type="text" />
-      <label for="apellido">Apellido</label>
-      <input id="apellido" v-model="apellido" type="text" />
-      <label for="genero">Genero</label>
-      <input id="genero" v-model="genero" type="text" />
-      <label for="fecha">Fecha de Nacimiento</label>
-      <input id="fecha" v-model="fechaNacimiento" type="datetime-local" />
-
-      <label for="carrera">Carrera</label>
-      <input id="carrera" v-model="carrera" type="text" />
-
-      <label for="cedula">Cedula</label>
-      <input id="cedula" v-model="cedula" type="text" />
-
-      <label for="rangoEconomico">Rango Economico</label>
-      <input id="rangoEconomico" v-model="rangoEconomico" type="text" />
-
-      <label for="facultad">Facultad</label>
-      <input id="facultad" v-model="facultad" type="text" />
-
-      <label for="gratuidad">Gratuidad</label>
-      <input id="gratuidad" v-model="gratuidad" type="text" />
-
-      <button @click="insertar">Insertar</button>
+  <div class="container">
+    <div class="form-post">
+      <p type="Nombre:">
+        <input type="text" name="" id="idnombre" v-model="nombre" />
+      </p>
+      <p type="Apellido:">
+        <input type="text" name="" id="idapellido" v-model="apellido" />
+      </p>
+      <p type="Genero:">
+        <input type="text" name="" id="idgenero" v-model="genero" />
+      </p>
+      <p type="Fecha Nacimiento:">
+        <input
+          type="datetime-local"
+          name=""
+          id="idfechanacimiento"
+          v-model="fechaNacimiento"
+        />
+      </p>
+      <p type="Cédula:">
+        <input type="text" name="" id="idcedula" v-model="cedula" />
+      </p>
+      <p type="Quintil:">
+        <input type="text" name="" id="idquintil" v-model="rangoEconomico" />
+      </p>
+      <p type="Facultad:">
+        <input type="text" name="" id="idfacultad" v-model="facultad" />
+      </p>
+      <p type="Carrera:">
+        <input type="text" name="" id="idcarrera" v-model="carrera" />
+      </p>
+      <p type="Gratuidad:">
+        <input type="text" name="" id="idgratuidad" v-model="gratuidad" />
+      </p>
+      <button @click="insertar">Guardar</button>
     </div>
   </div>
-
 </template>
 
 <script>
-import {
-  insertarFachada,
-} from "../helpers/clienteEstudiante";
-
+import { insertarFachada } from "../helpers/clienteEstudiante.js";
 export default {
   data() {
     return {
@@ -48,57 +50,39 @@ export default {
       apellido: null,
       genero: null,
       fechaNacimiento: null,
-      carrera: null,
       cedula: null,
       rangoEconomico: null,
       facultad: null,
+      carrera: null,
       gratuidad: null,
     };
   },
   methods: {
     async insertar() {
-      console.log("Insertando....");
-      const datos = {
+      const estuBody = {
         nombre: this.nombre,
         apellido: this.apellido,
         genero: this.genero,
         fechaNacimiento: this.fechaNacimiento,
-        carrera: this.carrera,
         cedula: this.cedula,
         rangoEconomico: this.rangoEconomico,
         facultad: this.facultad,
-        carrera: this.telefono,
+        carrera: this.carrera,
         gratuidad: this.gratuidad,
       };
-
-      await insertarFachada(datos);
-
-      console.log("Insertado!");
+      await insertarFachada(estuBody);
+      this.nombre = null;
+      this.apellido = null;
+      this.genero = null;
+      this.fechaNacimiento = null;
+      this.cedula = null;
+      this.rangoEconomico = null;
+      this.facultad = null;
+      this.carrera = null;
+      this.gratuidad = null;
     },
   },
 };
 </script>
-
-<style scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.formInsertar {
-  margin-top: 2rem;
-  display: grid;
-  padding: 1rem;
-  background-color: #9ce98c;
-  border-radius: 2rem;
-}
-
-label {
-  text-align: left;
-}
-
-input {
-  background-color: #9ce98c;
-}
+<style>
 </style>

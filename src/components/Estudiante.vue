@@ -1,97 +1,45 @@
 <template>
   <div class="container">
-    <div class="formInsertar">
-      <h1>Consulta por Estudiantes</h1>
-      <input v-model="id" type="number" />
-      <button @click="consultarPorId">Consultar</button>
+    <div class="form-post">
+      <p type="Nombre:">
+        <input type="text" name="" id="idnombre"  v-bind="nombreIng"/>
+      </p>
+      <p type="Apellido:">
+        <input type="text" name="" id="idapellido" v-model="apellidoIng" />
+      </p>
+      <p type="Genero:">
+        <input type="text" name="" id="idgenero" v-model="generoIng" />
+      </p>
+      <p type="Fecha Nacimiento:">
+        <input
+          type="text"
+          name=""
+          id="idfechanacimiento"
+          v-model="fechaNacimientoIng"
+        />
+      </p>
+      <p type="Cédula:">
+        <input type="text" name="" id="idcedula" />
+      </p>
+      <p type="Quintil:">
+        <input type="text" name="" id="idquintil" v-model="rangoEconomicoIng" />
+      </p>
+      <p type="Facultad:">
+        <input type="text" name="" id="idfacultad" v-model="facultadIng" />
+      </p>
+      <p type="Carrera:">
+        <input type="text" name="" id="idcarrera" v-model="carreraIng" />
+      </p>
+      <p type="Gratuidad:">
+        <input type="text" name="" id="idgratuidad" v-model="gratuidadIng" />
+      </p>
     </div>
   </div>
-
-  <div class="container">
-    <div class="formInsertar">
-      <h1>Eliminar Estudiante</h1>
-      <input v-model="id" type="number" />
-      <button @click="eliminar">Eliminar</button>
-    </div>
-  </div>
-
-
-
-  <div class="container">
-    <div class="formInsertar">
-      <h1>Inserción de Estudiantes</h1>
-
-      <label for="nombre">Nombre</label>
-      <input id="nombre" v-model="nombre" type="text" />
-      <label for="apellido">Apellido</label>
-      <input id="apellido" v-model="apellido" type="text" />
-      <label for="genero">Genero</label>
-      <input id="genero" v-model="genero" type="text" />
-      <label for="fecha">Fecha de Nacimiento</label>
-      <input id="fecha" v-model="fechaNacimiento" type="datetime-local" />
-
-      <label for="carrera">Carrera</label>
-      <input id="carrera" v-model="carrera" type="text" />
-
-      <label for="cedula">Cedula</label>
-      <input id="cedula" v-model="cedula" type="text" />
-
-      <label for="rangoEconomico">Rango Economico</label>
-      <input id="rangoEconomico" v-model="rangoEconomico" type="text" />
-
-      <label for="facultad">Facultad</label>
-      <input id="facultad" v-model="facultad" type="text" />
-
-      <label for="gratuidad">Gratuidad</label>
-      <input id="gratuidad" v-model="gratuidad" type="text" />
-
-      <button @click="insertar">Insertar</button>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="formInsertar">
-      <h1>Actualizar Estudiantes</h1>
-
-      <label for="nombre">Nombre</label>
-      <input id="nombre" v-model="nombre" type="text" />
-      <label for="apellido">Apellido</label>
-      <input id="apellido" v-model="apellido" type="text" />
-      <label for="genero">Genero</label>
-      <input id="genero" v-model="genero" type="text" />
-      <label for="fecha">Fecha de Nacimiento</label>
-      <input id="fecha" v-model="fechaNacimiento" type="datetime-local" />
-
-      <label for="carrera">Carrera</label>
-      <input id="carrera" v-model="carrera" type="text" />
-
-      <label for="cedula">Cedula</label>
-      <input id="cedula" v-model="cedula" type="text" />
-
-      <label for="rangoEconomico">Rango Economico</label>
-      <input id="rangoEconomico" v-model="rangoEconomico" type="text" />
-
-      <label for="facultad">Facultad</label>
-      <input id="facultad" v-model="facultad" type="text" />
-
-      <label for="gratuidad">Gratuidad</label>
-      <input id="gratuidad" v-model="gratuidad" type="text" />
-
-      <button @click="actualiazar">Actualizar</button>
-    </div>
-  </div>
-
 </template>
 
 <script>
-import {
-  consultarPorIdFachada,
-  insertarFachada,
-  actualizarFachada,
-  eliminarFachada
-} from "../helpers/clienteEstudiante";
-
 export default {
+ 
   data() {
     return {
       id: null,
@@ -99,93 +47,105 @@ export default {
       apellido: null,
       genero: null,
       fechaNacimiento: null,
-      carrera: null,
       cedula: null,
       rangoEconomico: null,
       facultad: null,
+      carrera: null,
       gratuidad: null,
+  
+      nombreIng: null,
+      apellidoIng: null,
+      generoIng: null,
+      fechaNacimientoIng: null,
+      cedulaIng: null,
+      rangoEconomicoIng: null,
+      facultadIng: null,
+      carreraIng: null,
+      gratuidadIng: null,
     };
   },
   methods: {
     async consultarPorId() {
-      const data = await consultarPorIdFachada(this.id);
-      const { nombre, apellido } = data;
+      const data = await consultarEstudianteFachada(this.id);
+      this.nombreIng = data.nombre;
+      this.apellidoIng = data.apellido;
+      this.generoIng = data.genero;
+      this.cedulaIng = data.cedula;
+      this.fechaNacimientoIng = data.fechaNacimiento;
+      this.rangoEconomicoIng = data.rangoEconomico;
+      this.facultadIng = data.facultad;
+      this.carreraIng = data.carrera;
+      this.gratuidadIng = data.gratuidad;
+      console.log("desde componente:");
       console.log(data);
-      this.nombre = data.nombre;
-      this.apellido = data.apellido;
-      this.genero = data.genero;
-      this.fechaNacimiento = data.fechaNacimiento;
-      (this.carrera = data.carrera),
-        (this.cedula = data.cedula),
-        (this.rangoEconomico = data.rangoEconomico),
-        (this.facultad = data.facultad),
-        (this.gratuidad = data.gratuidad);
     },
-
     async insertar() {
-      console.log("Insertando....");
-      const datos = {
-        nombre: this.nombre,
-        apellido: this.apellido,
-        genero: this.genero,
-        fechaNacimiento: this.fechaNacimiento,
-        carrera: this.carrera,
-        cedula: this.cedula,
-        rangoEconomico: this.rangoEconomico,
-        facultad: this.facultad,
-        carrera: this.telefono,
-        gratuidad: this.gratuidad,
+      const estuBody = {
+        nombre: this.nombreIng,
+        apellido: this.apellidoIng,
+        genero: this.generoIng,
+        fechaNacimiento: this.fechaNacimientoIng,
+        cedula: this.cedulaIng,
+        rangoEconomico: this.rangoEconomicoIng,
+        facultad: this.facultadIng,
+        carrera: this.carreraIng,
+        gratuidad: this.gratuidadIng,
       };
-
-      await insertarFachada(datos);
-
-      console.log("Insertado!");
+      await insertarFachada(estuBody);
     },
-
-    async actualiazar() {
-      const body = {
-        nombre: this.nombre,
-        apellido: this.apellido,
-        genero: this.genero,
-        fechaNacimiento: this.fechaNacimiento,
-        carrera: this.carrera,
-        cedula: this.cedula,
-        rangoEconomico: this.rangoEconomico,
-        facultad: this.facultad,
-        carrera: this.telefono,
-        gratuidad: this.gratuidad,
+    async actualziar() {
+      const estuBody = {
+        nombre: this.nombreIng,
+        apellido: this.apellidoIng,
+        genero: this.generoIng,
+        fechaNacimiento: this.fechaNacimientoIng,
+        cedula: this.cedulaIng,
+        rangoEconomico: this.rangoEconomicoIng,
+        facultad: this.facultadIng,
+        carrera: this.carreraIng,
+        gratuidad: this.gratuidadIng,
       };
-
-      await actualizarFachada(this.id, body);
+      await actualizarFachada(this.id, estuBody);
     },
-
-    async eliminar(){
+    async eliminar() {
       await eliminarFachada(this.id);
     },
   },
 };
 </script>
-
-<style scoped>
+<style>
 .container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
-
-.formInsertar {
-  margin-top: 2rem;
+.divisiones {
   display: grid;
-  padding: 1rem;
-  background-color: #9ce98c;
-  border-radius: 2rem;
+  grid-template-columns: repeat(2, 500px);
 }
-
-label {
-  text-align: left;
+.form-post {
+  width: 340px;
+  height: 600px;
+  background-color: #72e284;
+  border-radius: 8px;
+  padding: 20px 30px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  box-shadow: 0 0 50px -18px #000;
 }
-
-input {
-  background-color: #9ce98c;
+.form-get {
+  width: 340px;
+  height: 700px;
+  background-color: #71a9c8;
+  border-radius: 8px;
+  padding: 20px 30px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  box-shadow: 0 0 50px -18px #000;
+}
+p:before {
+  content: attr(type);
+  display: block;
+  margin: 5px 2px;
+  font-size: 17px;
+  color: #5a5a5a;
 }
 </style>

@@ -1,107 +1,136 @@
 <template>
-  <h1>Página Actualizar</h1>
+  <h2>Actualizar Estudiante</h2>
+
+  <input type="text" name="" id="" v-model="id" placeholder="ingresar id" />
 
   <div class="container">
-    <div class="formInsertar">
-      <h1>Actualizar Estudiantes</h1>
+    <div class="form-post">
+      <p type="Nombre:">
+        <input type="text" name="" id="idnombre" v-model="nombre" />
+      </p>
 
-      <label for="id">Id</label>
-      <input id="id" v-model="id" type="text" />
+      <p type="Apellido:">
+        <input type="text" name="" id="idapellido" v-model="apellido" />
+      </p>
 
-      <label for="nombre">Nombre</label>
-      <input id="nombre" v-model="nombre" type="text" />
-      <label for="apellido">Apellido</label>
-      <input id="apellido" v-model="apellido" type="text" />
-      <label for="genero">Genero</label>
-      <input id="genero" v-model="genero" type="text" />
-      <label for="fecha">Fecha de Nacimiento</label>
-      <input id="fecha" v-model="fechaNacimiento" type="datetime-local" />
+      <p type="Genero:">
+        <input type="text" name="" id="idgenero" v-model="genero" />
+      </p>
 
-      <label for="carrera">Carrera</label>
-      <input id="carrera" v-model="carrera" type="text" />
+      <p type="Fecha Nacimiento:">
+        <input
+          type="datetime-local"
+          name=""
+          id="idfechanacimiento"
+          v-model="fechaNacimiento"
+        />
+      </p>
 
-      <label for="cedula">Cedula</label>
-      <input id="cedula" v-model="cedula" type="text" />
+      <p type="Cédula:">
+        <input type="text" name="" id="idcedula" v-model="cedula" />
+      </p>
 
-      <label for="rangoEconomico">Rango Economico</label>
-      <input id="rangoEconomico" v-model="rangoEconomico" type="text" />
+      <p type="Quintil:">
+        <input type="text" name="" id="idquintil" v-model="rangoEconomico" />
+      </p>
 
-      <label for="facultad">Facultad</label>
-      <input id="facultad" v-model="facultad" type="text" />
+      <p type="Facultad:">
+        <input type="text" name="" id="idfacultad" v-model="facultad" />
+      </p>
 
-      <label for="gratuidad">Gratuidad</label>
-      <input id="gratuidad" v-model="gratuidad" type="text" />
+      <p type="Carrera:">
+        <input type="text" name="" id="idcarrera" v-model="carrera" />
+      </p>
 
-      <button @click="actualiazar">Actualizar</button>
+      <p type="Gratuidad:">
+        <input type="text" name="" id="idgratuidad" v-model="gratuidad" />
+      </p>
+
+      <button @click="actualizar">Actualizar</button>
     </div>
   </div>
 </template>
-
-<script>
-import {
   
-  actualizarFachada,
   
-} from "../helpers/clienteEstudiante";
+  
+  
+  <script>
+import { actualizarFachada } from "../helpers/clienteEstudiante.js";
 
 export default {
   data() {
     return {
       id: null,
+
       nombre: null,
+
       apellido: null,
+
       genero: null,
+
       fechaNacimiento: null,
-      carrera: null,
+
       cedula: null,
+
       rangoEconomico: null,
+
       facultad: null,
+
+      carrera: null,
+
       gratuidad: null,
     };
   },
+
   methods: {
-    
-    async actualiazar() {
-      const body = {
-        id: this.id,
+    async actualizar() {
+      const estuBody = {
         nombre: this.nombre,
+
         apellido: this.apellido,
+
         genero: this.genero,
+
         fechaNacimiento: this.fechaNacimiento,
-        carrera: this.carrera,
+
         cedula: this.cedula,
+
         rangoEconomico: this.rangoEconomico,
+
         facultad: this.facultad,
-        carrera: this.telefono,
+
+        carrera: this.carrera,
+
         gratuidad: this.gratuidad,
       };
 
-      await actualizarFachada(this.id, body);
+      await actualizarFachada(this.id, estuBody);
+
+      this.id = null;
+
+      this.nombre = null;
+
+      this.apellido = null;
+
+      this.genero = null;
+
+      this.fechaNacimiento = null;
+
+      this.cedula = null;
+
+      this.rangoEconomico = null;
+
+      this.facultad = null;
+
+      this.carrera = null;
+
+      this.gratuidad = null;
     },
   },
 };
 </script>
-
-<style scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.formInsertar {
-  margin-top: 2rem;
-  display: grid;
-  padding: 1rem;
-  background-color: #9ce98c;
-  border-radius: 2rem;
-}
-
-label {
-  text-align: left;
-}
-
-input {
-  background-color: #9ce98c;
-}
+  
+  
+  
+  <style>
 </style>

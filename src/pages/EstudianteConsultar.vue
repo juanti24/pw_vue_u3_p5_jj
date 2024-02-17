@@ -48,7 +48,7 @@
 
 <script>
 import { consultarPorIdFachada } from "../helpers/clienteEstudiante.js"
-//import Estudiante from "../components/Estudiante.vue";
+
 export default {
   data() {
     return {
@@ -64,6 +64,15 @@ export default {
       gratuidad: null,
     };
   },
+  created(){
+    console.log(this.$route);
+    console.log(this.$route.params.id);
+    console.log(this.$route.query)
+    console.log(this.$route.query.anio)
+    console.log(this.$route.query.edad)
+
+  },
+
   methods: {
    async consultarPorId() {
       const data = await consultarPorIdFachada(this.id);

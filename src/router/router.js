@@ -12,7 +12,7 @@ const routes = [
     },
 
     {
-        path: '/consultar',
+        path: '/consultar/:id',
         component: () => import ('@/pages/EstudianteConsultar')
     },
 
